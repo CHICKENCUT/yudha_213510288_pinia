@@ -1,16 +1,20 @@
 <template>
-  <h1>Todo list fendi </h1>
+  <h1>To Do List Yudha</h1>
   <div>
     <input v-model="newTodo" placeholder="Masukkan Kegiatan">
-    <button @click="addTodo">Tambah Kegiatan</button>
+    <button @click="addTodo">
+Input Activites</button>
     <br><br>
-    <button @click="hideCompleted = !hideCompleted">{{ hideCompleted ? 'Tampilkan Semua' : 'Sembunyikan yang sudah selesai' }}</button>
+    <button @click="hideCompleted = !hideCompleted">{{ hideCompleted ? 'Hide ALL' : 'Hide done' }}</button>
     <ul>
       <li v-for="todo in visibleTodos" :key="todo.id">
         <span :class="{ 'completed': todo.completed }" @click="toggleComplete(todo)">{{ todo.text }}</span>
-        <button v-if="!todo.completed" @click="completeTodo(todo.id)">Selesai</button>
-        <button v-if="todo.completed" @click="unCompleteTodo(todo.id)">Belum Selesai</button>
-        <button @click="removeTodo(todo.id)">Hapus</button>
+        <button v-if="!todo.completed" @click="completeTodo(todo.id)">
+finished</button>
+        <button v-if="todo.completed" @click="unCompleteTodo(todo.id)">
+not finished yet</button>
+        <button @click="removeTodo(todo.id)">
+wipe</button>
       </li>
     </ul>
   </div>
@@ -70,68 +74,44 @@ export default {
 </script>
 
 <style>
-/* CSS untuk membuat background gradient */
-body {
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(to right, #56ccf2, #2f80ed);
+.todo-list {
+  margin: 0 auto;
+  max-width: 600px;
+  font-family: sans-serif;
 }
 
-/* CSS untuk membuat judul */
 h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 30px;
 }
 
-/* CSS untuk membuat input todo */
 input {
   padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #f7f7f7;
-  margin-right: 10px;
-  width: 60%;
+  width: 70%;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
-/* CSS untuk membuat tombol tambah todo */
-button:first-of-type {
+button {
   padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  background-color: #27ae60;
+  margin-left: 10px;
+  background-color: #007bff;
   color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
-}
-
-button:first-of-type:hover {
-  background-color: #219351;
-}
-
-/* CSS untuk membuat tombol tampilkan/sembunyikan todo yang sudah selesai */
-button:last-of-type {
-  padding: 10px 20px;
-  border-radius: 5px;
   border: none;
-  background-color: #f39c12;
-  color: #fff;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
 }
 
-button:last-of-type:hover {
-  background-color: #d98d12;
+button:hover {
+  background-color: #7188a1;
 }
 
-/* CSS untuk membuat daftar todo */
 ul {
-  list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin: 0;
 }
 
 li {
@@ -140,57 +120,36 @@ li {
   align-items: center;
   margin-bottom: 10px;
   padding: 10px;
+  border: 1px solid #6f4343;
   border-radius: 5px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
 }
 
-/* CSS untuk membuat todo yang sudah selesai */
 .completed {
   text-decoration: line-through;
-  color: #aaa;
+  color: gray;
 }
 
-/* CSS untuk membuat tombol selesai */
-button:nth-of-type(2) {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #27ae60;
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
+button.finished {
+  background-color: green;
 }
 
-button:nth-of-type(2):hover {
-  background-color: #219351;
+button.finished:hover {
+  background-color: darkgreen;
 }
 
-/* CSS untuk membuat tombol belum selesai */
-button:nth-of-type(3) {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #e74c3c;
-  color: #fff;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
+button.not-finished {
+  background-color: orange;
 }
 
-button:nth-of-type(3):hover {
-  background-color: #d74434;
+button.not-finished:hover {
+  background-color: darkorange;
 }
 
-/* CSS untuk membuat tombol hapus */
-button:last-of-type {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #c0392b;
-  color: #fff;
-  cursor: pointer;
- 
+button.wipe {
+  background-color: red;
+}
 
-  }</style>
+button.wipe:hover {
+  background-color: darkred;
+}
+</style>
